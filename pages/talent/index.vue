@@ -4,11 +4,32 @@
   >
     <div class="p-8">
       <h1
-        class="mb-8 mt-24 text-center text-2xl text-black md:mb-12 lg:text-4xl uppercase font-inknut"
+        class="mb-8 mt-24 text-center text-2xl text-black md:mb-2 lg:text-4xl uppercase font-inknut"
       >
         Talents
       </h1>
 
+<div 
+  
+  class="flex items-center justify-center space-x-2 px-4 py-2 mb-2 sticky top-[90px] z-40 md:px-8 font-inknut transition-all duration-300"
+>
+    <button
+      v-for="letter in alphabet"
+      :key="letter"
+      @click="filterByLetter(letter)"
+      :class="[
+        'text-xl font-medium',
+        activeLetter === letter ? 
+
+          'text-black font-bold underline'
+          : availableLetters.has(letter) || letter === 'All'
+            ? 'text-black'
+            : 'text-gray-400 cursor-not-allowed'
+      ]"
+    >
+      {{ letter }}
+    </button>
+  </div>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
       >
@@ -105,8 +126,37 @@
 </template>
 
 <script lang="ts" setup>
-const images = [
-  {
+
+const alphabet = [
+  'a','b','c','d','e','f','g','h','i','j','k','l',
+  'm','n','o','p','q','r','s','t','u','v','w','x','y','z',
+  'All'
+]
+const activeLetter = ref('All')
+const availableLetters = computed(() => {
+  const letters = new Set<string>()
+  allImages.forEach(image => {
+    const firstLetter = image.slug.charAt(0).toLowerCase()
+    letters.add(firstLetter)
+  })
+  return letters
+})
+
+const images = computed(() => {
+  if (activeLetter.value === 'All') {
+    return allImages
+  }
+  return allImages.filter(image =>
+    image.slug.toLowerCase().startsWith(activeLetter.value.toLowerCase())
+  )
+})
+
+function filterByLetter(letter: string) {
+  if (letter === 'All' || availableLetters.value.has(letter)) {
+    activeLetter.value = letter
+  }
+}
+const allImages = [  {
     src: "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/c88ec0e5ee0a4792ba93ba14b1b6df47/7/5/7558300-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T021259Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=8d8c3332296c21ec77e516ae46f11f19e2423123ad343a8c82c4ec02004a2965",
     alt: "Description image 1",
     name: "Model 1",

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen bg-[url('~/assets/bgImage.svg')] bg-cover bg-center bg-no-repeat bg-full">
+  <div class="relative  md:min-h-screen bg-[url('~/assets/bgImage.svg')] bg-cover bg-center bg-no-repeat bg-full">
     <swiper
       :slidesPerView="3"
       :spaceBetween="10"
@@ -23,12 +23,12 @@
       <swiper-slide 
         v-for="(image, index) in images"
         :key="index"
-        class="md:h-[500px] overflow-hidden items-center my-10 "
+        class="md:h-[500px] overflow-hidden items-center my-3 md:my-10 "
       >
         <img
           :src="image.src"
           :alt="image.alt || `Slide ${index + 1}`"
-          class="w-full h-[650px]  object-cover   transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] transform border-2 border-black"
+          class="w-full h-[750px]  object-cover   transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] transform border-2 border-black"
           loading="lazy"
           sizes="sm:100vw md:50vw lg:400px"
           format="webp"

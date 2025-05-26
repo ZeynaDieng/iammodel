@@ -12,3 +12,11 @@
     </NuxtLayout>
   </div>
 </template>
+
+<script lang="ts" setup>
+useHead({
+  htmlAttrs: {
+    class: 'scroll-smooth', 
+  },
+})
+</script>

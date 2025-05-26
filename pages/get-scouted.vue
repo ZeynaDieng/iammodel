@@ -72,6 +72,11 @@
     IF SEEMED SO YOUR APPLICATION, YOU KNEE WITH ONE TERM AND CONSIDERES AND THE
     TELEGRAPH BY YOUR FREQUAL SAME BY OUR SERVICE.
   </p>
+
+  <div class="flex justify-center mt-4">
+    <button type="submit " class="border border-black text-xl font-semibold py-1 px-8"> SUBMIT </button>
+  </div>
+
 </template>
 
 <script setup>

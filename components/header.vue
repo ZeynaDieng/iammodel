@@ -10,18 +10,18 @@
       <div class="hidden lg:flex flex-1">
         <ul class="flex items-center gap-x-8">
        <li class="relative group">
-  <div class="mr-24 text-xl whitespace-nowrap cursor-pointer text-gray-500 hover:text-black transition-all duration-300 ease-in-out">
+  <div       @click="isWomenOpen = !isWomenOpen"
+ class="mr-24 text-xl whitespace-nowrap cursor-pointer text-gray-500 hover:text-black transition-all duration-300 ease-in-out">
     Women
   </div>
 
   <div
     class="transition-all duration-500 ease-in-out
-           overflow-hidden opacity-0 group-hover:opacity-100
-           translate-y-2 group-hover:translate-y-0
-           max-h-0 group-hover:max-h-40
+           overflow-hidden opacity-100
            relative left-0 -ml-10 "
   >
-    <div class="text-sm z-50  py-1 flex items-center">
+    <div         v-show="isWomenOpen"
+ class="text-sm z-50  py-2 flex items-center">
       <a href="/woman-main" class="text-gray-500 hover:text-black">Mainboard</a>
       <span>|</span>
       <a href="/woman-development" class="text-gray-500 hover:text-black">Development</a>
@@ -31,18 +31,18 @@
 
 
             <li class="relative group">
-  <div class="mr-24 text-xl whitespace-nowrap cursor-pointer text-gray-500 hover:text-black transition-all duration-300 ease-in-out">
+  <div       @click="isMenOpen = !isMenOpen"
+ class="mr-24 text-xl whitespace-nowrap cursor-pointer text-gray-500 hover:text-black transition-all duration-300 ease-in-out">
     Men
   </div>
 
   <div
     class="transition-all duration-500 ease-in-out
-           overflow-hidden opacity-0 group-hover:opacity-100
-           translate-y-2 group-hover:translate-y-0
-           max-h-0 group-hover:max-h-40
+           overflow-hidden opacity-100
            relative left-0 -ml-14 "
   >
-    <div class="text-sm z-50  py-1 flex items-center">
+    <div         v-show="isMenOpen"
+ class="text-sm z-50  py-2 flex items-center">
       <a href="/men-main" class="text-gray-500 hover:text-black">Mainboard</a>
       <span>|</span>
       <a href="/men-development" class="text-gray-500 hover:text-black">Development</a>
@@ -80,21 +80,39 @@
       </div>
     </div>
 
-    <div v-if="isOpen" class="lg:hidden bg-white border-t border-gray-200">
-      <div class="px-2 pt-2 pb-4 space-y-1">
-        <NuxtLink to="#" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Women</NuxtLink>
-        <NuxtLink to="#" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Men</NuxtLink>
-        <NuxtLink to="/talent" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Talent</NuxtLink>
-        <NuxtLink to="/get-scouted" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Get Scouted</NuxtLink>
-        <NuxtLink to="#" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">About us</NuxtLink>
-        <NuxtLink to="/academy" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Academy</NuxtLink>
+   <div v-if="isOpen" class="lg:hidden bg-white border-t border-gray-200">
+  <div class="px-2 pt-2 pb-4 space-y-1">
+    <div>
+      <NuxtLink to="#" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Women</NuxtLink>
+      <div class="pl-6">
+        <NuxtLink to="/woman-main" class="block py-1 text-sm text-gray-500 hover:text-black">Mainboard</NuxtLink>
+        <NuxtLink to="/woman-development" class="block py-1 text-sm text-gray-500 hover:text-black">Development</NuxtLink>
       </div>
     </div>
+
+    <div>
+      <NuxtLink to="#" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Men</NuxtLink>
+      <div class="pl-6">
+        <NuxtLink to="/men-main" class="block py-1 text-sm text-gray-500 hover:text-black">Mainboard</NuxtLink>
+        <NuxtLink to="/men-development" class="block py-1 text-sm text-gray-500 hover:text-black">Development</NuxtLink>
+      </div>
+    </div>
+
+    <NuxtLink to="/talent" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Talent</NuxtLink>
+    <NuxtLink to="/get-scouted" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Get Scouted</NuxtLink>
+    <NuxtLink to="#" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">About us</NuxtLink>
+    <NuxtLink to="/academy" class="block px-3 py-2 text-gray-500 hover:text-black font-medium">Academy</NuxtLink>
+  </div>
+</div>
+
   </nav>
 </template>
 
 <script setup>
 const isOpen = ref(false);
+
+const isWomenOpen = ref(false)
+const isMenOpen = ref(false)
 </script>
 
 <style>
