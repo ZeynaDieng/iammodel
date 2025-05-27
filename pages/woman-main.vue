@@ -1,46 +1,43 @@
-
 <template>
   <div
     class="relative bg-[url('~/assets/bgImage.svg')] bg-fixed bg-cover bg-center bg-no-repeat font-inknut"
   >
-    <div class="p-8">
-      <h1
-        class="mb-8 mt-24 text-center text-2xl text-black md:mb-2 lg:text-4xl uppercase font-inknut"
+    <div class="">
+      <div class="p-8">
+<h1
+        class="mt-20 text-center text-2xl text-black md:mb-2 lg:text-4xl uppercase font-inknut"
       >
-Mainboard      </h1>
-
-
-
-<div 
-  
-  class="flex items-center justify-center space-x-2 px-4 py-2 mb-2 sticky top-[90px] z-40 md:px-8 font-inknut transition-all duration-300"
->
-    <button
-      v-for="letter in alphabet"
-      :key="letter"
-      @click="filterByLetter(letter)"
-      :class="[
-        'text-xl font-medium',
-        activeLetter === letter ? 
-
-          'text-black font-bold underline'
-          : availableLetters.has(letter) || letter === 'All'
-            ? 'text-black'
-            : 'text-gray-400 cursor-not-allowed'
-      ]"
-    >
-      {{ letter }}
-    </button>
-  </div>
-
-
+        Mainboard
+      </h1>
+      </div>
+      
 
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        class="md:flex flex-wrap bg-white w-full items-center justify-center space-x-2 px-4 py-2 mb-2 sticky top-[80px] md:top-[90px] z-40 md:px-8 font-inknut transition-all duration-300"
+      >
+        <button
+          v-for="letter in alphabet"
+          :key="letter"
+          @click="filterByLetter(letter)"
+          :class="[
+            'text-xl font-medium',
+            activeLetter === letter
+              ? 'text-black font-bold underline'
+              : availableLetters.has(letter) || letter === 'All'
+              ? 'text-black'
+              : 'text-gray-400 cursor-not-allowed',
+          ]"
+        >
+          {{ letter }}
+        </button>
+      </div>
+
+      <div
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8"
       >
         <NuxtLink
-        v-for="(image, index) in images"
-  :key="index"
+          v-for="(image, index) in images"
+          :key="index"
           :to="`/talent/${image.slug}`"
           class="relative group cursor-pointer"
         >
@@ -61,7 +58,6 @@ Mainboard      </h1>
             }"
           >
             <div
-              
               class="absolute inset-0 hidden sm:flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-3"
               :style="{
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -113,13 +109,12 @@ Mainboard      </h1>
               </ul>
             </div>
             <div>
-
-              <h1
-                class="text-sm sm:text-base text-right mt-2 text-gray-800 font-semibold uppercase"
-              >
-                {{ image.name }}
-              </h1>
             </div>
+            <h1
+              class="text-sm sm:text-base text-right mt-2 text-gray-800 font-semibold uppercase"
+            >
+              {{ image.name }}
+            </h1>
           </div>
         </NuxtLink>
       </div>
@@ -128,20 +123,44 @@ Mainboard      </h1>
 </template>
 
 <script lang="ts" setup>
- const isSticky = ref(false)
- 
+const isSticky = ref(false);
+
 const alphabet = [
-  'a','b','c','d','e','f','g','h','i','j','k','l',
-  'm','n','o','p','q','r','s','t','u','v','w','x','y','z',
-  'All'
-]
-const activeLetter = ref('All')
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+  "All",
+];
+const activeLetter = ref("All");
 const allImages = [
   {
     src: "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/f03886e6b79ce41917d78f28a3ee552b/7/4/7464189-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T063023Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=910a67bb48135b1c1e2038bf4b2f2291b5e43621cac34a65342b185dc5cb974b",
     alt: "Description image 1",
     name: "Model 1",
-       slug: "blessing-o",
+    slug: "blessing-o",
   },
   {
     src: "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/8d8be878da4bbe2621d83339bd43092e/7/4/7480083-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T063023Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=7c64921a30cb57fdfbd67194de979f6df38e52693d8406332abd6bfbce31ef83",
@@ -159,7 +178,7 @@ const allImages = [
     src: "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/77fff45eb14df082228499186283653e/7/4/7436640-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T063023Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=8cf7a7a8e9c000b29426ef0d1448d26549526b091d37a3f81271bf4035544555",
     alt: "Description image 5",
     name: "Model 5",
-    slug: "maki",  
+    slug: "maki",
   },
   {
     src: "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/544c65466ec704ed77015a6190071474/7/4/7487518-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T063023Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=cb3cae3caef0bbaf1db9a035b310545239c0185062e8c39c0a82ec9fcd105c4a",
@@ -180,10 +199,9 @@ const allImages = [
     slug: "mila-z-zbinkonska",
   },
   {
-    src:
-      "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/c618a4f255b50332b96b3f68b301adc1/7/4/7464035-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T063024Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=90114533d60c272cfd6d67a67d0e43f90ec3b7f440a67a8419c4fa645d916f18",
+    src: "https://bucket-prod-01.s3.eu-west-1.amazonaws.com/uploads/content/125adbcb36f44a2ffef339d40bb314ca/talent/image/c618a4f255b50332b96b3f68b301adc1/7/4/7464035-big.jpeg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY55CGH2VAKKZFUPC%2F20250526%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250526T063024Z&X-Amz-SignedHeaders=host&X-Amz-Expires=259200&X-Amz-Signature=90114533d60c272cfd6d67a67d0e43f90ec3b7f440a67a8419c4fa645d916f18",
     alt: "Description image 9",
-    name: "Model 9",    
+    name: "Model 9",
     slug: "momoe-motoyoshi",
   },
   {
@@ -192,32 +210,29 @@ const allImages = [
     name: "Model 10",
     slug: "charlotte-tosca",
   },
-
 ];
 
-
 const availableLetters = computed(() => {
-  const letters = new Set<string>()
-  allImages.forEach(image => {
-    const firstLetter = image.slug.charAt(0).toLowerCase()
-    letters.add(firstLetter)
-  })
-  return letters
-})
+  const letters = new Set<string>();
+  allImages.forEach((image) => {
+    const firstLetter = image.slug.charAt(0).toLowerCase();
+    letters.add(firstLetter);
+  });
+  return letters;
+});
 
 const images = computed(() => {
-  if (activeLetter.value === 'All') {
-    return allImages
+  if (activeLetter.value === "All") {
+    return allImages;
   }
-  return allImages.filter(image =>
+  return allImages.filter((image) =>
     image.slug.toLowerCase().startsWith(activeLetter.value.toLowerCase())
-  )
-})
+  );
+});
 
 function filterByLetter(letter: string) {
-  if (letter === 'All' || availableLetters.value.has(letter)) {
-    activeLetter.value = letter
+  if (letter === "All" || availableLetters.value.has(letter)) {
+    activeLetter.value = letter;
   }
 }
-
 </script>

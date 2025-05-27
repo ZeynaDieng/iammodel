@@ -1,38 +1,38 @@
-
 <template>
   <div
     class="relative bg-[url('~/assets/bgImage.svg')] bg-fixed bg-cover bg-center bg-no-repeat font-inknut"
   >
-    <div class="p-8">
-      <h1
-        class="mb-8 mt-24 text-center text-2xl text-black md:mb-2 lg:text-4xl uppercase font-inknut"
+    <div class="">
+      <div class="p-8">
+<h1
+        class="mt-20 text-center text-2xl text-black md:mb-2 lg:text-4xl uppercase font-inknut"
       >
-Developpement     </h1>
-
-<div 
-  
-  class="flex items-center justify-center space-x-2 px-4 py-2 sticky mb-2 top-[90px] z-40 md:px-8 font-inknut transition-all duration-300"
->
-    <button
-      v-for="letter in alphabet"
-      :key="letter"
-      @click="filterByLetter(letter)"
-      :class="[
-        'text-xl font-medium',
-        activeLetter === letter ? 
-
-          'text-black font-bold underline'
-          : availableLetters.has(letter) || letter === 'All'
-            ? 'text-black'
-            : 'text-gray-400 cursor-not-allowed'
-      ]"
-    >
-      {{ letter }}
-    </button>
-  </div>
+Developpement      </h1>
+      </div>
+      
 
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        class="md:flex flex-wrap bg-white w-full items-center justify-center space-x-2 px-4 py-2 mb-2 sticky top-[80px] md:top-[90px] z-40 md:px-8 font-inknut transition-all duration-300"
+      >
+        <button
+          v-for="letter in alphabet"
+          :key="letter"
+          @click="filterByLetter(letter)"
+          :class="[
+            'text-xl font-medium',
+            activeLetter === letter
+              ? 'text-black font-bold underline'
+              : availableLetters.has(letter) || letter === 'All'
+              ? 'text-black'
+              : 'text-gray-400 cursor-not-allowed',
+          ]"
+        >
+          {{ letter }}
+        </button>
+      </div>
+
+      <div
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8"
       >
         <NuxtLink
           v-for="(image, index) in images"
@@ -49,7 +49,6 @@ Developpement     </h1>
           <div
             class="absolute inset-0 hidden sm:flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-3"
             :style="{
-              backgroundImage: `url('${image.src}')`,
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
               backgroundBlendMode: 'overlay',
               backgroundRepeat: 'no-repeat',
@@ -58,10 +57,8 @@ Developpement     </h1>
             }"
           >
             <div
-              
               class="absolute inset-0 hidden sm:flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-3"
               :style="{
-                backgroundImage: `url('${image.src}')`,
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 backgroundBlendMode: 'overlay',
                 backgroundRepeat: 'no-repeat',
@@ -111,13 +108,12 @@ Developpement     </h1>
               </ul>
             </div>
             <div>
-
-              <h1
-                class="text-sm sm:text-base text-right mt-2 text-gray-800 font-semibold uppercase"
-              >
-                {{ image.name }}
-              </h1>
             </div>
+            <h1
+              class="text-sm sm:text-base text-right mt-2 text-gray-800 font-semibold uppercase"
+            >
+              {{ image.name }}
+            </h1>
           </div>
         </NuxtLink>
       </div>

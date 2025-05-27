@@ -25,15 +25,13 @@
         :key="index"
         class="md:h-[500px] overflow-hidden items-center my-3 md:my-10 "
       >
-        <img
-          :src="image.src"
-          :alt="image.alt || `Slide ${index + 1}`"
-          class="w-full h-[750px]  object-cover   transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] transform border-2 border-black"
-          loading="lazy"
-          sizes="sm:100vw md:50vw lg:400px"
-          format="webp"
-          quality="80"
-        />
+       <img
+  :src="image.src"
+  :alt="image.alt || `Slide ${index + 1}`"
+  class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[750px] object-cover transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] transform border-2 border-black"
+  loading="lazy"
+/>
+
       </swiper-slide>
     </swiper>
   </div>
